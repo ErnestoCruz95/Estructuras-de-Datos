@@ -31,7 +31,7 @@ public abstract class Planta extends Empleado {
    
     private String regresaPrestaciones() {
     	/*
-    	 * TODO: 
+    	 * TODO: simon
     	 * Método privado que recorre el arreglo de instancia de prestaciones y si tiene un valor de true en la posición i,
     	 * entonces crea una cadena con el nombre de la prestación correspondiente. Los nombres de las prestaciones están en
     	 * el arreglo estático PRESTACIONES, en la misma posición i. Así, si prestaciones[0] = true, entonces la prestación
