@@ -58,13 +58,13 @@ public class Main {
 		System.out.println();
 		
 		System.out.println("Testing: size + indexOf + get");
-		for(int i=0; i<iList.size(); i++) {
+		for(int i=0; i <= iList.size(); i++) {
 			System.out.println("Get element at index " + iList.indexOf(iList.get(i)) + ": " + iList.get(i));
 		}
 		System.out.println();
 		
 		System.out.println("Testing: size + contains");
-		for(int i=0; i<iList.size(); i++) {
+		for(int i=0; i <= iList.size(); i++) {
 			System.out.println("Is element " + i + " contained in the list? " + iList.contains(i));
 		}
 		System.out.println();
