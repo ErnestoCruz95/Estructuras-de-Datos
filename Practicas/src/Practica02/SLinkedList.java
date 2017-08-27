@@ -201,9 +201,18 @@ public class SLinkedList<E> implements List<E> {
 
 	@Override
 	public E set(int index, E element) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        if(index < 0 || index > size()) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        SNode<E> current = top;
+
+        for (int i = 0; i <= index ; i++) {
+            current=current.next;
+        }
+        current.value=element;
+        return current.value;
+    }
 
 	@Override
 	public boolean contains(E e) {
@@ -267,9 +276,24 @@ public class SLinkedList<E> implements List<E> {
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+        if(isEmpty()) {
+            return null;
+        }
+        else {
+            Object[] array = new Object[size()+1];
+            SNode<E> current = top;
+            int i = 0;
+
+            while(current.next!=null) {
+                array[i] = current.next.value;
+                current=current.next;
+                i++;
+            }
+
+            return array;
+        }
+    }
 	
 
 	public String toString() {
