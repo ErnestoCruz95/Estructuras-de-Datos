@@ -19,6 +19,10 @@ public class Algoritmos {
         int[] insertionS = {10,17,1,3,2,100,99,900,60,-3};
         System.out.println(insertionSort(insertionS));
 
+        int[] bubbleS = {10,17,1,3,2,100,99,900,60,-3};
+        System.out.println(bubbleSort(bubbleS));
+
+
 
     }
 
@@ -70,21 +74,28 @@ public class Algoritmos {
 
 
     public static String selectionSort(int arr[]){
-        int smallest=0;
-        int valueToMove = 0;
+        int smallest=0, place=0;
+
         for (int i = 0; i < arr.length; i++) {
 
-            for (int j = 0; j < arr.length; j++) {
-                if(arr[i] < arr[j]){
-                    smallest = arr[j];
-                    valueToMove = arr[i];
+            smallest=arr[i];
 
-                    arr[i] = smallest;
-                    arr[j] = valueToMove;
+
+            for (int j = i; j < arr.length; j++) {
+
+                if(smallest>=arr[j]) {
+                    smallest=arr[j];
+                    place=j;
                 }
+
             }
 
+            arr[place]=arr[i];
+            arr[i]=smallest;
+
+
         }
+
 
         String returnString= "[" + arr[0];
 
@@ -143,6 +154,35 @@ public class Algoritmos {
 
         return -1;
 
+    }
+
+
+    public static String bubbleSort(int[] arr){
+        boolean notSorted =true;
+
+        while(notSorted){
+            notSorted =false;
+
+            for (int i = 1; i < arr.length; i++) {
+                if(arr[i] < arr[i-1]){
+                    int temp = arr[i];
+                    arr[i] = arr[i-1];
+                    arr[i-1] = temp;
+                    notSorted = true;
+                }
+            }
+
+        }
+        String returnString= "[" + arr[0];
+
+
+        for(int i =1; i< arr.length; i++) {
+            returnString += ", " + arr[i];
+        }
+
+        returnString += "]";
+
+        return  returnString;
     }
 
 
