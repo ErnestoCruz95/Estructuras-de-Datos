@@ -242,13 +242,14 @@ public class Algoritmos {
     }
 
     public static void heapSort(int arr[]){
+    		int value;
+        int k = arr.length;	
         makeHeap(arr);
-        int temp;
-        int count = 0;
+        
         for (int i = arr.length-1; i >= 0; i--) {
-            temp = removeTopItem(arr, arr.length-count);
-            arr[i] = temp;
-            count++;
+            value = removeTopItem(arr, k);
+            arr[i] = value;
+            k--;
         }
 
     }
