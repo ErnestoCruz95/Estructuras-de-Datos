@@ -50,10 +50,31 @@ public class Algoritmos {
         removeTopItem(uArray, uArray.length);
         System.out.println(Arrays.toString(uArray));
         System.out.println("\n");
+        
+        System.out.println("HeapShort con:");
+        int notHeap[] ={1,0, 24,18,-2,10};
+        System.out.println(Arrays.toString(notHeap));
+        heapSort(notHeap);
+        System.out.println(Arrays.toString(notHeap)+"\n");
 
+
+        int uArray1[] = {10,4,1,240,1024,23,21,348,0,8000,10004,3,14};
+
+        System.out.println("Before: " + Arrays.toString(uArray1));
+        quickSort(uArray1, 0, uArray1.length-1);
+        System.out.println("After quicksort: " + Arrays.toString(uArray1));
         int notHeap[] ={1,0, 24,18,-2,10};
         heapSort(notHeap);
         System.out.println(Arrays.toString(notHeap)+"\n");
+        System.out.println("\n\n");
+
+        System.out.println("Merge Sort");
+        int[] uArray3 = {10,17,1,3,2,100,99,900,60,-3};
+        int[] scratch = new int[uArray3.length];
+        System.out.println(Arrays.toString(uArray3));
+        mergeSort(uArray3, scratch, 0, uArray3.length-1);
+        System.out.println("Merge Sort: "+Arrays.toString(uArray3));
+        System.out.println("\n\n");
 
 
 
@@ -250,6 +271,91 @@ public class Algoritmos {
             value = removeTopItem(arr, k);
             arr[i] = value;
             k--;
+        }
+
+    }
+    
+    public static void quickSort(int[] arr, int start, int end){
+        // If the list has no more than one element, it's sorted
+        if(start >= end){
+            return;
+        }
+        // Use the first item as the dividing item
+        int divider = arr[start];
+
+        // Move items < divider to the front of the array and
+        //items >= divider to the end of the array
+
+        Stack<Integer> before = new Stack<Integer>();
+        Stack<Integer> after = new Stack<Integer>();
+
+        for (int i = start+1; i <= end ; i++) {
+            if(arr[i] < divider){
+                before.push(arr[i]);
+            } else{
+                after.push(arr[i]);
+            }
+        }
+
+        int j = start;
+        while(! before.empty()){
+            arr[j++] = before.pop();
+        }
+        int middle = j++;
+        arr[middle] = divider;
+
+        while(! after.empty()){
+            arr[j++] = after.pop();
+        }
+
+
+        //Recursively sort the two halves
+        quickSort(arr, start, middle - 1);
+        quickSort(arr, middle + 1, arr.length-1);
+
+    }
+
+    public static void mergeSort(int [] arr, int[] arrs, int start, int end) {
+
+        if (start >= end) {
+            return;
+        }
+
+        int midpoint = (start+end)/2;
+
+        mergeSort(arr,arrs,start,midpoint);
+        mergeSort(arr,arrs,midpoint+1,end);
+
+        int leftIndex = start;
+        int rightIndex = midpoint + 1;
+
+        int scratchIndex = leftIndex;
+
+        while(leftIndex <= midpoint && rightIndex <= end) {
+
+            if(arr[leftIndex] <= arr[rightIndex]) {
+                arrs[scratchIndex] = arr[leftIndex++];
+
+            }else {
+                arrs[scratchIndex] = arr[rightIndex++];
+
+            }
+
+            scratchIndex++;
+        }
+
+        for (int i = leftIndex; i <= midpoint ; i++) {
+            arrs[scratchIndex++] = arr[i];
+
+        }
+
+        for (int i = rightIndex; i <= end ; i++) {
+            arrs[scratchIndex++] = arr[i];
+
+        }
+
+        for (int i = start; i <= end; i++) {
+            arr[i]=arrs[i];
         }
 
     }
